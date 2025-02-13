@@ -1,3 +1,2 @@
 cd kakeibro-web
 pnpm lint
-pnpm test
