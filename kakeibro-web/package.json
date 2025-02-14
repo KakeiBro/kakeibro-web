@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "test": "vitest run --coverage",
     "check-packages": "pnpm outdated",
-    "console-check": "git diff --cached | grep -E 'console.log|debugger'",
     "preview": "vite preview",
     "prepare": "cd .. && husky kakeibro-web/.husky"
   },
