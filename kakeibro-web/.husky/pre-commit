@@ -1,2 +1,46 @@
+# Navigate to the project directory
 cd kakeibro-web
-pnpm lint
+node .husky/pre-commit.js
+
+# # Run linting with ESLint
+# echo "Running ESLint..."
+# pnpm lint
+# if [ $? -ne 0 ]; then
+#   echo "ESLint failed. Please fix the issues before committing."
+#   exit 1
+# fi
+
+# # Run TypeScript type checks (if using TypeScript)
+# echo "Running type checks with build check..."
+# pnpm build
+# if [ $? -ne 0 ]; then
+#   echo "TypeScript type checks failed. Please fix the issues before committing."
+#   exit 1
+# fi
+
+# # Run unit tests with Vitest (if using Vitest for testing)
+# echo "Running unit tests..."
+# #pnpm vitest run --coverage
+# if [ $? -ne 0 ]; then
+#   echo "Tests failed. Please fix the failing tests before committing."
+#   exit 1
+# fi
+
+# # Run outdate package checks
+# echo "Running outdated check..."
+# pnpm check-packages
+# # Capture the exit code but don't fail the commit
+# OUTDATED_EXIT_CODE=$?
+# if [ $OUTDATED_EXIT_CODE -ne 0 ]; then
+#   echo "Warning: Outdated packages found. Consider updating them."
+# fi
+
+# # Run console logs checks
+# echo "Running console and debug statements check..."
+# pnpm console-check
+# if [ $? -ne 0 ]; then
+#   echo "Tests failed. Please fix the failing tests before committing."
+#   exit 1
+# fi
+
+# echo "Pre-commit checks passed!"
