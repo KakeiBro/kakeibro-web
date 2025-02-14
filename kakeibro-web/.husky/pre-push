@@ -1,0 +1,2 @@
+cd kakeibro-web
+node .husky/pre-push.js

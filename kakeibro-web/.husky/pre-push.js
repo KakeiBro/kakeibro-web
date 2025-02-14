@@ -25,6 +25,13 @@ runCommand("pnpm build", "TypeScript type checks failed. Please fix the issues b
 // Run unit tests (uncomment when needed)
 // runCommand("pnpm test run --coverage", "Tests failed. Please fix the failing tests before committing.");
 
+// Run outdated package checks (but allow failures)
+runCommand(
+  "pnpm check-packages",
+  "Outdated packages found. Consider updating them.",
+  true // Allow failure without stopping the commit
+);
+
 // Run console logs and debug statements check (custom implementation)
 console.log("\nChecking for console.log and debugger statements...");
 const stagedFiles = execSync("git diff --cached --name-only --diff-filter=ACM", { encoding: "utf8" })
