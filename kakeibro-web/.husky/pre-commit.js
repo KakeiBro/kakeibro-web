@@ -2,9 +2,10 @@
 
 import { execSync } from "child_process";
 
-function runCommand(command, errorMessage, allowFailure = false) {
+function runCommand(command, errorMessage, allowFailure = false, customMessage = '') {
+  const startMessage = customMessage || `\nRunning: ${command}...`
   try {
-    console.log(`\nRunning: ${command}...`);
+    console.log(startMessage);
     execSync(command, { stdio: "inherit" });
   } catch (error) {
     if (allowFailure) {
@@ -17,16 +18,16 @@ function runCommand(command, errorMessage, allowFailure = false) {
 }
 
 // Run linting with ESLint
-runCommand("pnpm lint", "ESLint failed. Please fix the issues before committing.");
+runCommand("pnpm lint", "ESLint failed. Please fix the issues before committing.", false, '🔎 Checking code formatting...');
 
 // Run TypeScript type checks (with build check)
-runCommand("pnpm build", "TypeScript type checks failed. Please fix the issues before committing.");
+runCommand("pnpm build", "TypeScript type checks failed. Please fix the issues before committing.", false, '🛠️ Running build and type checks...');
 
 // Run unit tests (uncomment when needed)
-// runCommand("pnpm test run --coverage", "Tests failed. Please fix the failing tests before committing.");
+// runCommand("pnpm test run --coverage", "Tests failed. Please fix the failing tests before committing.", false, '✅ Running tests...');
 
 // Run console logs and debug statements check (custom implementation)
-console.log("\nChecking for console.log and debugger statements...");
+console.log("\n🛑 Checking for console logs and debugger statements...");
 const stagedFiles = execSync("git diff --cached --name-only --diff-filter=ACM", { encoding: "utf8" })
   .split("\n")
   .filter((file) => 
