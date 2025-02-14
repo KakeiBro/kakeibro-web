@@ -36,7 +36,9 @@ runCommand(
 console.log("\nChecking for console.log and debugger statements...");
 const stagedFiles = execSync("git diff --cached --name-only --diff-filter=ACM", { encoding: "utf8" })
   .split("\n")
-  .filter((file) => file.endsWith(".js") || file.endsWith(".ts") || file.endsWith(".tsx") || file.endsWith(".jsx"));
+  .filter((file) => 
+    !file.includes('.husky') && 
+    file.endsWith(".js") || file.endsWith(".ts") || file.endsWith(".tsx") || file.endsWith(".jsx"));
 
 let hasConsoleOrDebugger = false;
 
