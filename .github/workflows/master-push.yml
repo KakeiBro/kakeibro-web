@@ -8,15 +8,15 @@ on:
 jobs:
   lint_and_build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./kakeibro-web
     strategy:
       matrix:
         node-version: [20, 22]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Change to project folder
-        run: cd kakeibro-web && ls -laF
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -28,6 +28,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
+          cache-dependency-path: "./kakeibro-web/pnpm-lock.yaml"
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
