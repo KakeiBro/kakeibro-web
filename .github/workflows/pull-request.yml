@@ -41,3 +41,12 @@ jobs:
 
       - name: Build application
         run: pnpm run build
+
+      - name: Check for console or debug statements
+        run: node scripts/debug-check.js
+
+      - name: Check for outdated packages
+        run: pnpm run check-packages || true
+      
+      - name: Check for vulnerabilities
+        run: pnpm audit
