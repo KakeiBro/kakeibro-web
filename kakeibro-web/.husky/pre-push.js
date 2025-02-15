@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { execSync } from "child_process";
-import { debugChecker } from "../scripts/debug-check";
+import { debugChecker } from "../scripts/debug-check.js";
 
 function runCommand(command, errorMessage, allowFailure = false, customMessage = '') {
   const startMessage = customMessage || `\nRunning: ${command}...`
