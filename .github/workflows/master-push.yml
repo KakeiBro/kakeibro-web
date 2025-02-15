@@ -41,6 +41,9 @@ jobs:
 
       - name: Build application
         run: pnpm run build
+      
+      - name: Check for outdated packages
+        run: pnpm run check-packages
 
   deploy:
     runs-on: ubuntu-latest
