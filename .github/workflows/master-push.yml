@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Change to project folder
-        run: cd kakeibro-web
+        run: cd kakeibro-web && ls -laF
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
