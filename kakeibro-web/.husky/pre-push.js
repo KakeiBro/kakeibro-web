@@ -1,22 +1,7 @@
 #!/usr/bin/env node
 
-import { execSync } from "child_process";
+import { runCommand } from "../scripts/run-command.js";
 import { debugChecker } from "../scripts/debug-check.js";
-
-function runCommand(command, errorMessage, allowFailure = false, customMessage = '') {
-  const startMessage = customMessage || `\nRunning: ${command}...`
-  try {
-    console.log(startMessage);
-    execSync(command, { stdio: "inherit" });
-  } catch (error) {
-    if (allowFailure) {
-      console.warn(`⚠️ Warning: ${errorMessage}`);
-    } else {
-      console.error(`❌ ${errorMessage}`);
-      process.exit(1);
-    }
-  }
-}
 
 // Run linting with ESLint
 runCommand("pnpm lint", "ESLint failed. Please fix the issues before committing.", false, '🔎 Checking code formatting...');
