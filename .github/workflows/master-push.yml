@@ -43,7 +43,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: lint_and_test
+    needs: lint_and_build
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout code
