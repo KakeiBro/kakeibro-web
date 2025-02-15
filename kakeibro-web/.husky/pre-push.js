@@ -35,6 +35,11 @@ runCommand(
   "Outdated packages found. Consider updating them."
 );
 
+runCommand(
+  "pnpm audit",
+  "Packages with vulnerabilities found. Update them."
+);
+
 // Run console logs and debug statements check (custom implementation)
 debugChecker();
 
