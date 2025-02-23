@@ -9,8 +9,8 @@ runCommand("pnpm lint", "ESLint failed. Please fix the issues before committing.
 // Run TypeScript type checks (with build check)
 runCommand("pnpm build", "TypeScript type checks failed. Please fix the issues before committing.", false, '🛠️ Running build and type checks...');
 
-// Run unit tests (uncomment when needed)
-// runCommand("pnpm test run --coverage", "Tests failed. Please fix the failing tests before committing.", false, '✅ Running tests...');
+// Run unit tests
+runCommand("pnpm pTest", "Tests failed. Please fix the failing tests before committing.", false, '✅ Running tests...');
 
 // Run outdated package checks (but allow failures)
 runCommand(
