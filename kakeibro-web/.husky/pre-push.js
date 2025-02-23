@@ -22,7 +22,9 @@ runCommand(
 
 runCommand(
   "pnpm audit",
-  "Packages with vulnerabilities found. Update them."
+  "Packages with vulnerabilities found. Update them.",
+  true,
+  "Packages with vulnerabilities found. Waiting until all dependencies bump esbuild.",
 );
 
 // Run console logs and debug statements check (custom implementation)
