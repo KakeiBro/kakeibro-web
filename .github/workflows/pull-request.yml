@@ -50,4 +50,4 @@ jobs:
         run: pnpm run check-packages || true
       
       - name: Check for vulnerabilities
-        run: pnpm audit || true # This is just until vitest and vite bump esbuild
+        run: pnpm audit || echo 'Failing audit silently, waiting for esbuild bump' # This is just until vitest and vite bump esbuild
