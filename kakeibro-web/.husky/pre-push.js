@@ -15,14 +15,14 @@ runCommand("pnpm pTest", "Tests failed. Please fix the failing tests before comm
 // Run outdated package checks (but allow failures)
 runCommand(
   "pnpm check-packages",
+  "Outdated packages found. Consider updating them.",
+  true, // Allow failure without stopping the commit,
   "Outdated packages found. Consider updating them."
 );
 
 runCommand(
   "pnpm audit",
-  "Packages with vulnerabilities found. Update them.",
-  true,
-  "Packages with vulnerabilities found. Waiting until all dependencies bump esbuild.",
+  "Packages with vulnerabilities found. Update them."
 );
 
 // Run console logs and debug statements check (custom implementation)
