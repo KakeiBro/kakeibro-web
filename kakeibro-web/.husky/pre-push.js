@@ -15,8 +15,6 @@ runCommand("pnpm pTest", "Tests failed. Please fix the failing tests before comm
 // Run outdated package checks (but allow failures)
 runCommand(
   "pnpm check-packages",
-  "Outdated packages found. Consider updating them.",
-  true, // Allow failure without stopping the commit,
   "Outdated packages found. Consider updating them."
 );
 
