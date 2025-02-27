@@ -78,10 +78,8 @@ jobs:
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
-      
-      - name: Setup service account credentials
-        run: |
-          export GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
 
       - name: Build and Deploy to Firebase
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
         run: pnpm run deploy
