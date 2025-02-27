@@ -12,7 +12,7 @@
     "coverage": "vitest run --coverage",
     "check-packages": "pnpm outdated",
     "preview": "vite preview",
-    "deploy": "tsc -b && vite build && firebase deploy --",
+    "deploy": "tsc -b && vite build && firebase deploy --only hosting",
     "manual-deploy": "tsc -b && vite build && firebase deploy --only hosting",
     "prepare": "cd .. && husky kakeibro-web/.husky"
   },
