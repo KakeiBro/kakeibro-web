@@ -79,7 +79,15 @@ jobs:
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
+      - name: Setup service account credentials
+        run: echo '${{ secrets.GCLOUD_SERVICE_ACCOUNT }}' > $HOME/gcloud-service-key.json
+
+      - name: Set GOOGLE_APPLICATION_CREDENTIALS
+        run: echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcloud-service-key.json" >> $GITHUB_ENV
+
       - name: Build and Deploy to Firebase
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCLOUD_SERVICE_ACCOUNT }}
         run: pnpm run deploy
+      
+      - name: Cleanup service account file
+        run: rm -f $HOME/gcloud-service-key.json
