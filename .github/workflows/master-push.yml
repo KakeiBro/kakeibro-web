@@ -86,7 +86,6 @@ jobs:
         run: echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcloud-service-key.json" >> $GITHUB_ENV
 
       - name: Build and Deploy to Firebase
-        env:
         run: pnpm run deploy
       
       - name: Cleanup service account file
