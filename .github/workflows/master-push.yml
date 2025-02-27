@@ -79,11 +79,8 @@ jobs:
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
 
-      - name: Build project
-        run: pnpm run build
+      - name: Authenticate with Firebase
+        run: firebase login --token ${{ secrets.FIREBASE_TOKEN }}
 
-      # - name: Deploy to GitHub Pages
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./build
+      - name: Build and Deploy to Firebase
+        run: pnpm run deploy
