@@ -27,7 +27,7 @@ jobs:
       - name: Delete old caches
         run: |
           latest_cache_id=$(jq -r '.[0].id' caches.json)
-          jq -c '.[1:]' caches.json | while read cache; do
+          jq -c '.[1:] | .[]' caches.json | while read -r cache; do
             cache_id=$(echo $cache | jq -r '.id')
             curl -X DELETE -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
               -H "Accept: application/vnd.github+json" \
