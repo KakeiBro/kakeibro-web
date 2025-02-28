@@ -21,6 +21,9 @@ jobs:
           echo $response
           echo "$response" | jq -r '.actions_caches | sort_by(.created_at) | reverse' > caches.json
       
+      - name: Debug caches structure
+        run: cat caches.json
+
       - name: Delete old caches
         run: |
           latest_cache_id=$(jq -r '.[0].id' caches.json)
