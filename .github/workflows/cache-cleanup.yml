@@ -30,3 +30,6 @@ jobs:
               "https://api.github.com/repos/${{ github.repository }}/actions/caches/$cache_id"
           done
         if: success()
+      
+      - name: Clean up
+        run: rm -f caches.json
