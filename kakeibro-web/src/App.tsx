@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -6,14 +6,25 @@ import './App.css';
 function App() {
   const [count, setCount] = useState(0);
   const [message, setMessage] = useState('');
+  const [eventList, setEventList] = useState(new Array<string>());
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const messageCallback = (event: any) => {
-    if (event.origin !== 'http://localhost:5173') {
-      return;
-    }
-    setMessage(JSON.stringify(event.data));
-  };
+  const messageCallback = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (event: any) => {
+      if (event.origin !== window.location.origin) {
+        return;
+      }
+
+      if (event.data?.event !== 'OAuth') {
+        return;
+      }
+
+      const newEventList = [...eventList, event.data];
+      setEventList(newEventList);
+      setMessage(JSON.stringify(newEventList));
+    },
+    [eventList]
+  );
 
   useEffect(() => {
     window.addEventListener('message', messageCallback);
@@ -21,14 +32,22 @@ function App() {
     return () => {
       window.removeEventListener('message', messageCallback);
     };
-  }, []);
+  }, [messageCallback]);
   async function startOAuth() {
     const url = 'http://localhost:5214/api/v1/auth/o-auth-uri/';
 
     const response = await fetch(url);
     const responseBody = await response.json();
 
-    window.open(responseBody.uri, '_blank');
+    const width = 450;
+    const height = 600;
+    const left = (window.screen.width - width) / 2;
+    const top = (window.screen.height - height) / 2;
+    window.open(
+      responseBody.uri, // URL to open
+      'GoogleAuth', // Window name
+      `width=${width},height=${height},top=${top},left=${left},popup`
+    );
   }
 
   function openMinifiedWindow() {

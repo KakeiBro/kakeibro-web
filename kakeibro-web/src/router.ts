@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router';
 import App from './App';
-import { Login } from './features';
+import { Login, RedirectSuccess } from './features';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     Component: Login,
+  },
+  {
+    path: '/redirect-success',
+    Component: RedirectSuccess,
   },
 ]);
 
