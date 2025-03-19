@@ -17,12 +17,14 @@ runCommand(
   "pnpm check-packages",
   "Outdated packages found. Consider updating them.",
   true, // Allow failure without stopping the commit,
-  "Outdated packages found. Consider updating them."
+  "🔍 Checking for outdated packages..."
 );
 
 runCommand(
   "pnpm audit",
-  "Packages with vulnerabilities found. Update them."
+  "Packages with vulnerabilities found. Update them.",
+  false,
+  "🔍 Checking for vulnerabilities..."
 );
 
 // Run console logs and debug statements check (custom implementation)
