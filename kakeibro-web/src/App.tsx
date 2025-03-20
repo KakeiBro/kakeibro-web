@@ -2,11 +2,13 @@ import { useCallback, useEffect, useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
+import { useNavigate } from 'react-router';
 
 function App() {
   const [count, setCount] = useState(0);
   const [message, setMessage] = useState('');
   const [eventList, setEventList] = useState(new Array<string>());
+  const navigate = useNavigate();
 
   const messageCallback = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,7 +21,7 @@ function App() {
         return;
       }
 
-      const newEventList = [...eventList, event.data];
+      const newEventList = [...eventList, event.data.authCode];
       setEventList(newEventList);
       setMessage(JSON.stringify(newEventList));
     },
@@ -33,6 +35,26 @@ function App() {
       window.removeEventListener('message', messageCallback);
     };
   }, [messageCallback]);
+
+  useEffect(() => {
+    async function postAuthCode() {
+      const url = new URL('http://localhost:5214/api/v1/auth/o-auth-code/');
+      url.searchParams.set('code', eventList[eventList.length - 1]);
+
+      const response = await fetch(url, { method: 'POST' });
+      const responseBody = await response.json();
+
+      if (response.status === 200) {
+        navigate('/login', { state: { code: responseBody.code } });
+      }
+    }
+    if (eventList.length < 1) {
+      return;
+    }
+
+    postAuthCode();
+  }, [eventList, navigate]);
+
   async function startOAuth() {
     const url = 'http://localhost:5214/api/v1/auth/o-auth-uri/';
 

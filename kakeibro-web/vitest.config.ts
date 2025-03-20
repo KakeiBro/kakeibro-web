@@ -12,4 +12,10 @@ export default defineConfig({
     // I'm leaving it in here becasue often people want to parse CSS in tests.
     css: true,
   },
+  resolve: {
+    alias: {
+      'testing-library-utils': '/src/test-utils/testing-library-utils.tsx',
+      src: '/src',
+    },
+  },
 });

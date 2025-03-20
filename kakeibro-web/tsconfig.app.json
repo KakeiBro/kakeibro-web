@@ -21,7 +21,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "types": ["vitest/globals", "jest", "@testing-library/jest-dom"]
+    "types": ["vitest/globals", "jest", "@testing-library/jest-dom"],
+    "paths": {
+      "testing-library-utils": ["./src/test-utils/testing-library-utils.tsx"]
+    }
   },
   "include": ["src"]
 }
