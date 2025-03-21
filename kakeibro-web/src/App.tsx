@@ -45,7 +45,7 @@ function App() {
       const responseBody = await response.json();
 
       if (response.status === 200) {
-        navigate('/login', { state: { code: responseBody.code } });
+        navigate('/login', { state: { response: responseBody } });
       }
     }
     if (eventList.length < 1) {
