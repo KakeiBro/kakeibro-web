@@ -1,2 +1,3 @@
 echo "🚀 Running pre-push hook..."
+cd kakeibro-web
 node .husky/pre-push.js
